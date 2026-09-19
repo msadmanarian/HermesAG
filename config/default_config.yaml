@@ -1,0 +1,65 @@
+# HermesAG Master Configuration
+system:
+  agent_name: "Hermes"
+  version: "0.1.0"
+  log_level: "INFO"
+  runtime_profile: "auto" # options: local_machine, vps_remote, docker_isolated
+
+hardware:
+  mode: "local" # local, docker, vps
+  docker:
+    image: "hermes-agent-sandbox:latest"
+    memory_limit: "4g"
+    cpu_shares: 2
+  vps:
+    host: "127.0.0.1"
+    port: 22
+    user: "hermes"
+
+memory:
+  tier1_core:
+    enabled: true
+    dir_path: "data/tier1_core"
+  tier2_session:
+    enabled: true
+    db_path: "data/tier2_sessions.db"
+    enable_fts: true
+  tier3_honcho:
+    enabled: true
+    profile_path: "data/tier3_user_profile.json"
+    pattern_threshold: 0.65
+  tier4_obsidian:
+    enabled: true
+    vault_path: "data/obsidian_vault"
+    sync_on_startup: true
+
+models:
+  default_provider: "mock" # options: anthropic, openai, ollama, llamacpp, mock
+  providers:
+    anthropic:
+      model: "claude-3-5-sonnet-20241022"
+      api_key_env: "ANTHROPIC_API_KEY"
+    openai:
+      model: "gpt-4o"
+      api_key_env: "OPENAI_API_KEY"
+    ollama:
+      base_url: "http://localhost:11434"
+      model: "qwen2.5:7b"
+    llamacpp:
+      server_url: "http://localhost:8080"
+      model: "qwen2.5-7b-instruct-q4_k_m.gguf"
+
+tools:
+  web_search:
+    enabled: true
+  browser:
+    enabled: true
+    headless: true
+  code_exec:
+    enabled: true
+    timeout_sec: 30
+
+cron:
+  enabled: true
+  daily_briefing: "0 8 * * *" # 8:00 AM daily
+  memory_compaction: "0 0 * * 0" # Weekly midnight Sunday
