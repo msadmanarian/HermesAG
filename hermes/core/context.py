@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 from hermes.core.types import AgentState, Message
@@ -9,7 +9,7 @@ class ExecutionContext(BaseModel):
     current_state: AgentState = AgentState.IDLE
     history: List[Message] = Field(default_factory=list)
     variables: Dict[str, Any] = Field(default_factory=dict)
-    started_at: datetime = Field(default_factory=datetime.utcnow)
+    started_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     step_count: int = 0
 
     def transition_to(self, new_state: AgentState):

@@ -1,12 +1,12 @@
 import asyncio
+from datetime import datetime, timezone
 from typing import Any, Callable, Coroutine, Dict, List
 from pydantic import BaseModel, Field
-from datetime import datetime
 
 class Event(BaseModel):
     name: str
     payload: Dict[str, Any] = Field(default_factory=dict)
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 EventHandler = Callable[[Event], Coroutine[Any, Any, None]]
 
