@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HermesAG — Autonomous Cognitive Agent Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo">⚡ HERMES</span>
+        <span class="badge">v0.1.0 • Autonomous</span>
+      </div>
+      <div class="system-status">
+        <span class="pulse-dot"></span>
+        <span id="hw-status">Detecting Hardware...</span>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+      <!-- 4-Tier Memory Visualizer Card -->
+      <section class="card memory-card">
+        <h3>🧠 4-Tier Memory Architecture</h3>
+        <div class="tiers-container">
+          <div class="tier-box tier-1">
+            <div class="tier-title">Tier 1: Core Files</div>
+            <div class="tier-desc">memory.md • user.md • soul.md</div>
+            <div class="tier-stat" id="t1-stat">Active</div>
+          </div>
+          <div class="tier-box tier-2">
+            <div class="tier-title">Tier 2: Episodic SQLite</div>
+            <div class="tier-desc">FTS5 Full-Text Session Index</div>
+            <div class="tier-stat" id="t2-stat">Indexed</div>
+          </div>
+          <div class="tier-box tier-3">
+            <div class="tier-title">Tier 3: Honcho Insights</div>
+            <div class="tier-desc">Implicit Cognitive Pattern Profiler</div>
+            <div class="tier-stat" id="t3-stat">Tracking</div>
+          </div>
+          <div class="tier-box tier-4">
+            <div class="tier-title">Tier 4: Second Brain</div>
+            <div class="tier-desc">Obsidian Vault & PRD Sync</div>
+            <div class="tier-stat" id="t4-stat">Synced</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Interactive Console -->
+      <section class="card chat-card">
+        <h3>💬 Autonomous Agent Console</h3>
+        <div class="chat-history" id="chat-box">
+          <div class="message assistant">
+            <div class="sender">Hermes</div>
+            <div class="bubble">System initialized. Connected to 4-tier memory and local tools. How can I assist with your development today?</div>
+          </div>
+        </div>
+        <form class="chat-input-form" id="chat-form">
+          <input type="text" id="user-input" placeholder="Ask Hermes (e.g. Build floating pomodoro, evaluate business idea, audit code)..." autocomplete="off" required>
+          <button type="submit">Dispatch ⚡</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
